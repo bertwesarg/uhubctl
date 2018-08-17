@@ -1,5 +1,6 @@
 # Executables
 uhubctl
+uhubpwm
 
 # Object files
 *.o

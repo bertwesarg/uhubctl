@@ -34,14 +34,16 @@ ifeq ($(UNAME_S),FreeBSD)
 	LDFLAGS += -lusb
 endif
 
-PROGRAM = uhubctl
+PROGRAMS = uhubctl uhubpwm
 
-$(PROGRAM): $(PROGRAM).c
+all: $(PROGRAMS)
+
+%: %.c usb.h
 	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS)
 
 install:
 	$(INSTALL_DIR) $(DESTDIR)$(sbindir)
-	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(sbindir)
+	$(INSTALL_PROGRAM) $(PROGRAMS) $(DESTDIR)$(sbindir)
 
 clean:
-	$(RM) $(PROGRAM).o $(PROGRAM).dSYM $(PROGRAM)
+	$(RM) $(PROGRAMS) *.o *.dSYM
